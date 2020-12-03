@@ -1,59 +1,65 @@
 from constants import *
+import pygame as pg
 
 
 class Surface(object):
-    def __init__(self, x, y, w, h, img):
+    def __init__(self, x, y, w, h):
         self.x = x
         self.y = y
         self.width = w
         self.height = h
-        self.animations = img
-        self.hitbox = (0, 0, 0, 0)
+        self.animations = []
+        self.hitbox = pg.Rect(self.x, self.y, self.width, self.height)
 
-    def getX(self):
-        return self.x
+    def getXY(self) -> tuple:
+        return self.x, self.y
 
-    def getY(self):
-        return self.y
+    def getWH(self) -> tuple:
+        return self.width, self.height
 
-    def getW(self):
-        return self.width
-
-    def getH(self):
-        return self.height
-
-    def getBox(self):
+    def getBox(self) -> object:
         return self.hitbox
 
-    def setX(self, x):
-        self.x = x
+    def setXY(self, x, y):
+        self.x, self.y = x, y
+        self.__update()
 
-    def setY(self, y):
-        self.y = y
+    def setWH(self, w, h):
+        self.width, self.height = w, h
+        self.__update()
 
-    def setW(self, w):
-        self.width = w
-
-    def setH(self, h):
-        self.height = h
-
-    def setBox(self, rect):
-        self.hitbox = rect
+    def __update(self):
+        self.hitbox = pg.Rect(self.x, self.y, self.width, self.height)
 
     def draw(self):
         pass
 
 
+class Button(Surface):
+    def __init__(self, x, y, w, h):
+        super().__init__(x, y, w, h)
+        self.pointed = False
+
+    def getPoint(self) -> bool:
+        return self.pointed
+
+    def setPoint(self):
+        self.pointed = not self.pointed
+
+    def click(self):
+        pass
+
+
 class Movable(Surface):
-    def __init__(self, x, y, w, h, img, spd):
-        super().__init__(x, y, w, h, img)
-        self.speed = spd
+    def __init__(self, x, y, w, h):
+        super().__init__(x, y, w, h)
+        self.speed = 1
         self.dir = IDLE
 
-    def getSpd(self):
+    def getSpd(self) -> int:
         return self.speed
 
-    def getDir(self):
+    def getDir(self) -> int:
         return self.dir
 
     def setSpd(self, spd):
@@ -63,4 +69,33 @@ class Movable(Surface):
         self.dir = dir
 
     def move(self):
+        pass
+
+
+class Bullet(Movable):
+    def __init__(self, x, y, w, h):
+        super().__init__(x, y, w, h)
+        self.dmg = 1.0
+        self.multiplier = 1.0
+        self.radius = 0
+
+    def getDmg(self) -> float:
+        return self.dmg
+
+    def getMulti(self) -> float:
+        return self.multiplier
+
+    def getRad(self) -> float:
+        return self.radius
+
+    def setDmg(self, dmg):
+        self.dmg = dmg
+
+    def setMulti(self, multiplier):
+        self.multiplier = multiplier
+
+    def setRad(self, radius):
+        self.radius = radius
+
+    def hit(self):
         pass
