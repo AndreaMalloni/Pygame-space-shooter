@@ -1,0 +1,2 @@
+projectiles = []
+enemies = []

@@ -35,28 +35,13 @@ class Surface(object):
         pass
 
 
-class Button(Surface):
-    def __init__(self, x, y, w, h):
-        super().__init__(x, y, w, h)
-        self.pointed = False
-
-    def getPoint(self) -> bool:
-        return self.pointed
-
-    def setPoint(self):
-        self.pointed = not self.pointed
-
-    def click(self):
-        pass
-
-
 class Movable(Surface):
     def __init__(self, x, y, w, h):
         super().__init__(x, y, w, h)
-        self.speed = 1
+        self.speed = 1.0
         self.dir = IDLE
 
-    def getSpd(self) -> int:
+    def getSpd(self) -> float:
         return self.speed
 
     def getDir(self) -> int:
@@ -71,31 +56,3 @@ class Movable(Surface):
     def move(self):
         pass
 
-
-class Bullet(Movable):
-    def __init__(self, x, y, w, h):
-        super().__init__(x, y, w, h)
-        self.dmg = 1.0
-        self.multiplier = 1.0
-        self.radius = 0
-
-    def getDmg(self) -> float:
-        return self.dmg
-
-    def getMulti(self) -> float:
-        return self.multiplier
-
-    def getRad(self) -> float:
-        return self.radius
-
-    def setDmg(self, dmg):
-        self.dmg = dmg
-
-    def setMulti(self, multiplier):
-        self.multiplier = multiplier
-
-    def setRad(self, radius):
-        self.radius = radius
-
-    def hit(self):
-        pass
