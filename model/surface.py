@@ -36,9 +36,9 @@ class Surface(object):
 
 
 class Movable(Surface):
-    def __init__(self, x, y, w, h):
+    def __init__(self, x, y, w, h, speed = 1.0):
         super().__init__(x, y, w, h)
-        self.speed = 1.0
+        self.speed = speed
         self.dir = IDLE
 
     def getSpd(self) -> float:
@@ -54,5 +54,20 @@ class Movable(Surface):
         self.dir = dir
 
     def move(self):
-        pass
-
+        dir = self.getDir()
+        if dir == NORD:
+            self.setXY(self.x, self.y - self.speed)
+        elif dir == NORD_EST:
+            self.setXY(self.x + self.speed, self.y - self.speed)
+        elif dir == EST:
+            self.setXY(self.x + self.speed, self.y)
+        elif dir == SUD_EST:
+            self.setXY(self.x - self.speed, self.y + self.speed)
+        elif dir == SUD:
+            self.setXY(self.x, self.y + self.speed)
+        elif dir == SUD_OVEST:
+            self.setXY(self.x - self.speed, self.y + self.speed)
+        elif dir == OVEST:
+            self.setXY(self.x - self.speed, self.y)
+        elif dir == NORD_OVEST:
+            self.setXY(self.x - self.speed, self.y - self.speed)

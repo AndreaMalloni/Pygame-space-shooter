@@ -1,6 +1,4 @@
-from overrides import *
 import surface as sf
-import pygame as pg
 
 
 class Button(sf.Surface):
@@ -19,9 +17,9 @@ class Button(sf.Surface):
 
 
 class Entity(sf.Movable):
-    def __init__(self, x, y, w, h):
-        super().__init__(x, y, w, h)
-        self.health = 0.0
+    def __init__(self, x, y, w, h, speed = 1.0, hp = 0.0):
+        super().__init__(x, y, w, h, speed)
+        self.health = hp
 
     def getHP(self) -> float:
         return self.health
@@ -32,17 +30,13 @@ class Entity(sf.Movable):
     def die(self):
         pass
 
-    # @overrides(sf.Movable.move())
-    def move(self):
-        pass
-
 
 class Bullet(sf.Movable):
-    def __init__(self, x, y, w, h):
-        super().__init__(x, y, w, h)
-        self.dmg = 1.0
-        self.multiplier = 1.0
-        self.radius = 0.0
+    def __init__(self, x, y, w, h, speed = 1.0, dmg = 1.0, multi = 1.0, rad = 1.0):
+        super().__init__(x, y, w, h, speed)
+        self.dmg = dmg
+        self.multiplier = multi
+        self.radius = rad
 
     def getDmg(self) -> float:
         return self.dmg
@@ -70,10 +64,10 @@ class Bullet(sf.Movable):
 
 
 class Player(Entity):
-    def __init__(self, x, y, w, h):
-        super().__init__(x, y, w, h)
-        self.fireRate = 1.0
-        self.shield = 0.0
+    def __init__(self, x, y, w, h, speed = 1.0, hp = 0.0, rate = 1.0, shield = 0.0):
+        super().__init__(x, y, w, h, speed, hp)
+        self.fireRate = rate
+        self.shield = shield
 
     def getShield(self) -> float:
         return self.shield
