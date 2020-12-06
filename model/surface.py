@@ -54,20 +54,4 @@ class Movable(Surface):
         self.dir = dir
 
     def move(self):
-        dir = self.getDir()
-        if dir == NORD:
-            self.setXY(self.x, self.y - self.speed)
-        elif dir == NORD_EST:
-            self.setXY(self.x + self.speed, self.y - self.speed)
-        elif dir == EST:
-            self.setXY(self.x + self.speed, self.y)
-        elif dir == SUD_EST:
-            self.setXY(self.x - self.speed, self.y + self.speed)
-        elif dir == SUD:
-            self.setXY(self.x, self.y + self.speed)
-        elif dir == SUD_OVEST:
-            self.setXY(self.x - self.speed, self.y + self.speed)
-        elif dir == OVEST:
-            self.setXY(self.x - self.speed, self.y)
-        elif dir == NORD_OVEST:
-            self.setXY(self.x - self.speed, self.y - self.speed)
+        pass
