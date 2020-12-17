@@ -1,3 +1,6 @@
+D_WIDTH = 500
+D_HEIGHT = 600
+
 IDLE = 0
 NORD = 1
 NORD_EST = 2
